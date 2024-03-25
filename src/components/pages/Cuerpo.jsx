@@ -1,6 +1,20 @@
 import { Table } from "react-bootstrap";
+import ItemTarea from "./tarea/ItemTarea";
 
 const Cuerpo = () => {
+  let array=[{id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:2,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:3,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:4,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:5,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:6,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
+  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"}];
+
   return (
     <>
       <section>
@@ -10,6 +24,7 @@ const Cuerpo = () => {
             <button className="btn btn-primary ">Nuevo</button>
           </div>
         </div>
+        <hr />
         <article>
           <Table striped bordered hover>
             <thead>
@@ -20,15 +35,9 @@ const Cuerpo = () => {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>
-                  <button className="btn btn-success mx-1">Ver</button>
-                  <button className="btn btn-warning">Editar</button>
-                  <button className="btn btn-danger">Borrar</button>
-                </td>
-              </tr>
+              {
+                array.map((t)=> <ItemTarea key={t.id} tarea={t}></ItemTarea>)
+              }
             </tbody>
           </Table>
         </article>
