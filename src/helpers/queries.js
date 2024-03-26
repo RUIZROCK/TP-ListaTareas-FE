@@ -14,3 +14,13 @@ export const crearTareaAPI = async (tareaNueva) => {
       console.log(error);
     }
   };
+
+  export const leerTareasAPI = async () => {
+    try {
+      const respuesta = await fetch(URI_TAREA);
+      console.log(respuesta);
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+    }
+  };
