@@ -47,3 +47,18 @@ export const crearTareaAPI = async (tareaNueva) => {
     }
   };
   
+  export const modificarTareaAPI = async (tarea, id) => {
+    try {
+      const respuesta = await fetch(`${URI_TAREA}/${id}`,{
+        method: "PUT",
+        headers:{
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(tarea)
+      })
+      console.log(respuesta);
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+    }
+  };
