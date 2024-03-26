@@ -36,3 +36,14 @@ export const crearTareaAPI = async (tareaNueva) => {
       console.log(error);
     }
   };
+
+  export const obtenerTareaAPI = async (id) => {
+    try {
+      const respuesta = await fetch(`${URI_TAREA}/${id}`);
+      console.log(respuesta);
+      return respuesta;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
