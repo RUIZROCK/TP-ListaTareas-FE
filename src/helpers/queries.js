@@ -18,7 +18,6 @@ export const crearTareaAPI = async (tareaNueva) => {
   export const leerTareasAPI = async () => {
     try {
       const respuesta = await fetch(URI_TAREA);
-      console.log(respuesta);
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -30,7 +29,6 @@ export const crearTareaAPI = async (tareaNueva) => {
       const respuesta = await fetch(`${URI_TAREA}/${id}`, {
         method: "DELETE",
       });
-      console.log(respuesta);
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -40,7 +38,6 @@ export const crearTareaAPI = async (tareaNueva) => {
   export const obtenerTareaAPI = async (id) => {
     try {
       const respuesta = await fetch(`${URI_TAREA}/${id}`);
-      console.log(respuesta);
       return respuesta;
     } catch (error) {
       console.log(error);
@@ -56,7 +53,6 @@ export const crearTareaAPI = async (tareaNueva) => {
         },
         body: JSON.stringify(tarea)
       })
-      console.log(respuesta);
       return respuesta;
     } catch (error) {
       console.log(error);
