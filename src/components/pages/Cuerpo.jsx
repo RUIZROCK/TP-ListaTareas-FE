@@ -1,19 +1,29 @@
 import { Table } from "react-bootstrap";
 import ItemTarea from "./tarea/ItemTarea";
-
+import { useEffect, useState } from "react";
+import { leerTareasAPI } from "../../helpers/queries";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 const Cuerpo = () => {
-  let array=[{id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:2,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:3,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:4,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:5,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:6,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"},
-  {id:1,titulo:"t1",detalle:"d1",importancia:"i1"}];
+  
+  const [tareas, setTareas] = useState([]);
+  useEffect(() => {
+    obtenerTareas();
+  }, []);
+
+  const obtenerTareas = async () => {
+    const respuesta = await leerTareasAPI();
+    if (respuesta.status === 200) {
+      const datos = await respuesta.json();
+      setTareas(datos);
+    }else{
+      Swal.fire({
+        title: "Ocurrio un error",
+        text: `Intenta esta operación en unos minutos.`,
+        icon: "error"
+      });
+    }
+  };
 
   return (
     <>
@@ -21,7 +31,7 @@ const Cuerpo = () => {
         <div className="row d-flex justify-content-evenly align-content-center ">
           <h1 className="col-12 col-md-11">Lista de Tareas</h1>
           <div className="col-12 col-md-1 my-2">
-            <button className="btn btn-primary ">Nuevo</button>
+            <Link to={"/crearTarea"} className="btn btn-primary ">Nuevo</Link>
           </div>
         </div>
         <hr />
@@ -31,12 +41,13 @@ const Cuerpo = () => {
               <tr>
                 <th>#</th>
                 <th>Tarea</th>
+                <th>Importancia</th>
                 <th>Acciones</th>
               </tr>
             </thead>
             <tbody>
               {
-                array.map((t)=> <ItemTarea key={t.id} tarea={t}></ItemTarea>)
+                tareas.map((t)=> <ItemTarea key={t._id} tarea={t} setTareas={setTareas}></ItemTarea>)
               }
             </tbody>
           </Table>
